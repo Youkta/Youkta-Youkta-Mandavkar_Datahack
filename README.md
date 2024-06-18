@@ -1,27 +1,31 @@
-### Predicting Vaccine Uptake: A Multi-Label Classification Approach
+### Predicting Vaccine Acceptance Using Machine Learning
 
-#### Project Description:
-This project aims to predict the likelihood of individuals receiving the xyz flu vaccine and the seasonal flu vaccine using demographic, behavioral, and opinion-related features. The prediction is treated as a multi-label classification problem.
+#### Overview
+This project focuses on predicting vaccine acceptance (`xyz_vaccine` and `seasonal_vaccine`) using machine learning techniques. It utilizes demographic, behavioral, and attitudinal data to forecast individual vaccination decisions.
 
-#### Approach:
-1. **Data Preprocessing:**
-   - Load and merge training features and labels.
-   - Handle missing values with `SimpleImputer`.
-   - One-hot encode categorical variables and standardize numerical features.
+#### Approach and Methodology
+1. **Data Preprocessing**:
+   - Missing values in categorical columns were handled by filling them with 'missing'.
+   - Categorical variables were frequency encoded to convert them into numerical features suitable for modeling.
 
-2. **Model Development:**
-   - Split the dataset into training and validation sets.
-   - Train a `RandomForestClassifier` on preprocessed data.
-   - Evaluate using ROC AUC scores for both target variables.
+2. **Model Selection and Training**:
+   - **CatBoostClassifier** was selected for its robust handling of categorical data.
+   - Hyperparameters such as learning rate, depth, and regularization were optimized using grid search.
+   - Models were separately trained to predict `xyz_vaccine` and `seasonal_vaccine`.
 
-3. **Prediction:**
-   - Apply the trained model to the test set.
-   - Prepare and save the submission file.
+3. **Evaluation**:
+   - Model performance was evaluated using the ROC AUC score to assess predictive accuracy.
 
-#### Methods and Libraries:
-- **Libraries:** `pandas`, `scikit-learn`
-- **Data Preprocessing:** `SimpleImputer`, `OneHotEncoder`, `StandardScaler`, `ColumnTransformer`, `Pipeline`
-- **Model Training:** `RandomForestClassifier`
-- **Evaluation:** `roc_auc_score`
+4. **Prediction and Submission**:
+   - Trained models were used to predict vaccine acceptance on a new dataset (`df2`).
+   - Predicted probabilities were compiled into a submission file (`submission.csv`) containing `respondent_id`, `xyz_vaccine`, and `seasonal_vaccine`.
 
-This project employs a structured approach to predict vaccine uptake using machine learning, ensuring accurate model evaluation and effective predictions.
+#### Results
+- Achieved ROC AUC scores of approximately 0.873 for `xyz_vaccine` and 0.865 for `seasonal_vaccine`, indicating strong predictive performance.
+
+#### Technologies Used
+- Python, Pandas, Scikit-learn for data processing and modeling.
+- CatBoost for categorical data handling and model training.
+
+#### Conclusion
+This project demonstrates the effective use of machine learning to forecast vaccine acceptance based on diverse individual characteristics. It provides insights valuable for public health strategies and decision-making processes.
